@@ -1,0 +1,13 @@
+[build]
+  publish = "src/public"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["express", "pug", "helmet", "cors", "serverless-http"]
+  included_files = ["src/views/**"]
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
