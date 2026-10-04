@@ -1,0 +1,34 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="theme-color", content="#f3f5ef")
+        meta(name="robots", content="noindex")
+        title 404 | Jair Gutierrez
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="anonymous")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Manrope:wght@400;700;800&display=swap")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        header.topbar.shell
+            a.brand(href="/", aria-label="Jair Gutierrez, inicio")
+                span.brand-mark(aria-hidden="true") JG
+                span Jair Gutierrez
+            a.nav-link(href="/projects") Aplicaciones
+
+        main.not-found.shell
+            p.error-number(aria-hidden="true") 404
+            section.error-copy(aria-labelledby="error-title")
+                p.eyebrow Página no encontrada
+                h1#error-title Esta dirección no existe.
+                p.error-message La página solicitada no está disponible. Revisa la dirección o vuelve al inicio.
+                p.requested-path= requestedPath
+                a.home-button(href="/")
+                    span(aria-hidden="true") ←
+                    | Volver al inicio
+
+        footer.shell
+            span Jair Gutierrez
+            span Desarrollo frontend · backend
+            span 2026

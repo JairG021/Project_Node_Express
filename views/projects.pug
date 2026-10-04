@@ -1,0 +1,39 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="theme-color", content="#f3f5ef")
+        meta(name="description", content="Aplicaciones desarrolladas por Jair Gutierrez: Netchb y gestionAppChb.")
+        title Aplicaciones | Jair Gutierrez
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="anonymous")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Manrope:wght@400;700;800&display=swap")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        header.topbar.shell
+            a.brand(href="/", aria-label="Jair Gutierrez, inicio")
+                span.brand-mark(aria-hidden="true") JG
+                span Jair Gutierrez
+            a.nav-link(href="/") Volver al inicio
+
+        main.projects-page.shell
+            p.eyebrow Portafolio / Aplicaciones
+            h1 Software para resolver trabajo real.
+            p.intro Aplicaciones que he desarrollado para simplificar la operación y la gestión de sistemas.
+
+            section.project-list(aria-label="Aplicaciones desarrolladas")
+                each project, index in projects
+                    article.project
+                        div
+                            .project-meta
+                                span.project-index= String(index + 1).padStart(2, '0')
+                                span= project.category
+                            h2= project.title
+                            p= project.description
+                        .project-bottom= project.focus
+
+        footer.shell
+            span Jair Gutierrez
+            span Aplicaciones desarrolladas
+            span 2026
