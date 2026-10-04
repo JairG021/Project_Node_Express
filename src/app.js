@@ -1,16 +1,11 @@
-import { existsSync } from 'node:fs';
-import path from 'path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import mainController from './controllers/mainController.js';
 import errorController from './controllers/errorController.js';
 
-const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
-const projectRoot = existsSync(path.join(moduleDirectory, 'views'))
-	? path.dirname(moduleDirectory)
-	: process.cwd();
+const projectRoot = process.cwd();
 const app = express();
 const allowedOrigins = process.env.CORS_ORIGIN
 	?.split(',')
@@ -31,7 +26,8 @@ app.get('/', mainController.home);
 app.get('/projects', mainController.getProjects);
 app.use(errorController.error404);
 
-const isMainModule = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+const isMainModule = process.argv[1]
+	&& path.resolve(process.argv[1]) === path.join(projectRoot, 'src', 'app.js');
 
 if (isMainModule) {
 	const port = Number(process.env.PORT) || 3000;

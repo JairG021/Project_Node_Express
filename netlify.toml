@@ -5,7 +5,7 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["express", "pug", "helmet", "cors", "serverless-http"]
-  included_files = ["src/views/**"]
+  included_files = ["src/views/**", "src/public/**"]
 
 [[redirects]]
   from = "/*"
