@@ -1,12 +1,16 @@
+import { existsSync } from 'node:fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import mainController from './controllers/mainController.js';
 import errorController from './controllers/errorController.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = existsSync(path.join(moduleDirectory, 'views'))
+	? path.dirname(moduleDirectory)
+	: process.cwd();
 const app = express();
 const allowedOrigins = process.env.CORS_ORIGIN
 	?.split(',')
@@ -16,10 +20,10 @@ const allowedOrigins = process.env.CORS_ORIGIN
 app.use(cors(allowedOrigins ? { origin: allowedOrigins } : undefined));
 app.use(helmet());
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(projectRoot, 'src', 'views'));
 app.set('view engine', 'pug');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(projectRoot, 'src', 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
